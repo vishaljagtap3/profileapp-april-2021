@@ -10,6 +10,7 @@
     android:gravity="center_horizontal|center_vertical">
 
     <TextView
+        android:id="@+id/txtWelcomeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_message"
@@ -17,6 +18,7 @@
         android:layout_marginBottom="30px"/>
 
     <ImageView
+        android:id="@+id/imgCountry"
         android:layout_width="200px"
         android:layout_height="150px"
         android:src="@drawable/in_flag" />
@@ -27,6 +29,7 @@
         android:text="Username" />
 
     <EditText
+        android:id="@+id/edtUsername"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -37,12 +40,14 @@
         android:text="Password" />
 
     <EditText
+        android:id="@+id/edtPassword"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20px"/>
 
     <Button
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#000000"
