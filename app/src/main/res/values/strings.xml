@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Profile</string>
     <string name="welcome_message">Welcome to BitCode!</string>
+    <string name="hint_username">email id</string>
 </resources>

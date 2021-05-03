@@ -1,6 +1,7 @@
 package in.bitcode.profileapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -45,6 +46,8 @@ public class MainActivity extends Activity {
         mEdtPassword = findViewById(R.id.edtPassword);
         mBtnLogin = findViewById(R.id.btnLogin);
 
+        mEdtUsername.setHint(R.string.hint_username);
+
         mImgCountry.setImageResource( mArrImageIds[mCurrentImageIndex] );
     }
 
@@ -63,6 +66,18 @@ public class MainActivity extends Activity {
 
             if( mEdtUsername.getText().toString().equals("bitcode") && mEdtPassword.getText().toString().equals("bitcode") ) {
                 log("Login Successful!");
+
+                //code to start ProfileActivity
+                Intent intentProfileActivity =
+                        new Intent(MainActivity.this, ProfileActivity.class);
+
+                intentProfileActivity.putExtra("username", mEdtUsername.getText().toString());
+                intentProfileActivity.putExtra("userimageid", mArrImageIds[mCurrentImageIndex]);
+
+                startActivity(intentProfileActivity);
+
+                finish();
+
             }
             else {
                 log("Login failed!");
@@ -71,7 +86,6 @@ public class MainActivity extends Activity {
             System.out.println("Button login is Clicked!");
             //Log.e("profileapp", "Button login is touched!");
             log("Button is Clicked!");
-
         }
     }
 
