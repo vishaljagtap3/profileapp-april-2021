@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstApp">
 
+        <activity android:name=".ProfileEditorActivity"/>
+
         <activity android:name=".ProfileActivity"/>
 
         <activity android:name="in.bitcode.profileapp.MainActivity">

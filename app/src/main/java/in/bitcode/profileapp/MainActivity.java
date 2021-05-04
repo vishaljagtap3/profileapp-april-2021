@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 
     private void init() {
         setContentView(R.layout.activity_main);
+        
         mImgCountry = findViewById(R.id.imgCountry);
         mEdtUsername = findViewById(R.id.edtUsername);
         mEdtPassword = findViewById(R.id.edtPassword);
