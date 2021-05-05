@@ -14,6 +14,8 @@ public class ProfileEditorActivity extends Activity {
     private EditText mEdtName, mEdtPhone, mEdtEmail, mEdtSkills;
     private Button mBtnSaveProfile;
 
+    private Profile mProfile;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,20 @@ public class ProfileEditorActivity extends Activity {
         init();
 
         mBtnSaveProfile.setOnClickListener(new BtnSaveProfileClickListener());
+
+        getInput();
+
+    }
+
+    private void getInput() {
+        //extract the input if any
+        mProfile = (Profile) getIntent().getSerializableExtra(Profile.KEY_PROFILE);
+        if(mProfile != null) {
+            mEdtName.setText(mProfile.getName());
+            mEdtPhone.setText(mProfile.getPhone());
+            mEdtEmail.setText(mProfile.getEmail());
+            mEdtSkills.setText(mProfile.getSkills());
+        }
     }
 
     private class BtnSaveProfileClickListener implements View.OnClickListener {
@@ -28,15 +44,22 @@ public class ProfileEditorActivity extends Activity {
         public void onClick(View v) {
 
             Intent resIntent = new Intent();
-            resIntent.putExtra("name", mEdtName.getText().toString());
+
+            Profile profile = new Profile(
+                    mEdtName.getText().toString(),
+                    mEdtPhone.getText().toString(),
+                    mEdtEmail.getText().toString(),
+                    mEdtSkills.getText().toString()
+            );
+            resIntent.putExtra(Profile.KEY_PROFILE, profile);
+
+            /*resIntent.putExtra("name", mEdtName.getText().toString());
             resIntent.putExtra("phone", mEdtPhone.getText().toString());
             resIntent.putExtra("email", mEdtEmail.getText().toString());
-            resIntent.putExtra("skills", mEdtSkills.getText().toString());
+            resIntent.putExtra("skills", mEdtSkills.getText().toString());*/
 
             setResult(1, resIntent);
-
             finish();
-
         }
     }
 

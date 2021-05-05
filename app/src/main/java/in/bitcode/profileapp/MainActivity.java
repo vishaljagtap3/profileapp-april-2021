@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -75,6 +76,8 @@ public class MainActivity extends Activity {
                 intentProfileActivity.putExtra("username", mEdtUsername.getText().toString());
                 intentProfileActivity.putExtra("userimageid", mArrImageIds[mCurrentImageIndex]);
 
+                Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_LONG).show();
+
                 startActivity(intentProfileActivity);
 
                 finish();
@@ -82,6 +85,7 @@ public class MainActivity extends Activity {
             }
             else {
                 log("Login failed!");
+                Toast.makeText(MainActivity.this, "Login Failed!", Toast.LENGTH_LONG).show();
             }
 
             System.out.println("Button login is Clicked!");

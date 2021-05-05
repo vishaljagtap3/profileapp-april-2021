@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -29,26 +30,66 @@ public class ProfileActivity extends Activity {
 
     private Button mBtnEditProfile;
 
-    private String mName, mPhone, mEmail, mSkills;
+    //private String mName, mPhone, mEmail, mSkills;
+    private Profile mProfile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        init();
+        mt("ProfileAct : onCreate");
 
+        init();
 
         mBtnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(ProfileActivity.this, ProfileEditorActivity.class);
+                intent.putExtra(Profile.KEY_PROFILE, mProfile);
                 startActivityForResult(intent, 1);
-
             }
         });
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mt("ProfileAct : onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        mt("ProfileAct : onRestart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mt("ProfileAct : onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mt("ProfileAct : onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mt("ProfileAct : onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        mt("ProfileAct : onDestroy");
+        super.onDestroy();
+    }
+
+    private void mt(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
     private void init() {
@@ -147,8 +188,17 @@ public class ProfileActivity extends Activity {
             return;
         }
 
-        Bundle res = data.getExtras();
-        mName = res.getString("name");
+       /* Bundle res = data.getExtras();
+        mProfile = (Profile)res.getSerializable(Profile.KEY_PROFILE);*/
+
+        mProfile = (Profile) data.getSerializableExtra(Profile.KEY_PROFILE);
+
+        mEdtName.setText(mProfile.getName());
+        mEdtPhone.setText(mProfile.getPhone());
+        mEdtEmail.setText(mProfile.getEmail());
+        mEdtSkills.setText(mProfile.getSkills());
+
+        /*mName = res.getString("name");
         mPhone = res.getString("phone");
         mEmail = res.getString("email");
         mSkills = res.getString("skills");
@@ -157,5 +207,8 @@ public class ProfileActivity extends Activity {
         mEdtPhone.setText(mPhone);
         mEdtEmail.setText(mEmail);
         mEdtSkills.setText(mSkills);
+        */
+
+
     }
 }
